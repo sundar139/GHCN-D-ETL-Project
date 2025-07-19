@@ -1,0 +1,31 @@
+data_sources:
+  base_url: "https://www.ncei.noaa.gov/pub/data/ghcn/daily/"
+  stations_file: "ghcnd-stations.txt"
+  daily_data_file: "ghcnd_all.tar.gz"
+  
+processing:
+  target_state: "GA"
+  start_year: 2015
+  end_year: 2025
+  required_elements: ["TMAX", "TMIN", "PRCP", "SNOW", "SNWD"]
+  batch_size: 1000
+  
+storage:
+  base_path: "/Volumes/workspace/ghcn/ghcnvol/data"
+  raw_path: "/Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all"
+  stations_path: "/Volumes/workspace/ghcn/ghcnvol/data/raw/"
+  bronze_path: "/Volumes/workspace/ghcn/ghcnvol/data/bronze"
+  silver_path: "/Volumes/workspace/ghcn/ghcnvol/data/silver"
+  gold_path: "/Volumes/workspace/ghcn/ghcnvol/data/gold"
+  
+quality_checks:
+  temperature_range:
+    min: -500  # -50.0°C in tenths
+    max: 500   # 50.0°C in tenths
+  precipitation_max: 2000  # 200.0mm in tenths
+  
+performance:
+  cache_tables: true
+  optimize_writes: true
+  partition_columns: ["year", "month"]
+  target_file_size: "128MB"

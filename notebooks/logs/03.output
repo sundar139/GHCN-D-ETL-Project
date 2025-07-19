@@ -1,0 +1,272 @@
+bronze_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+day:integer
+ELEMENT:string
+VALUE:integer
+MFLAG:string
+QFLAG:string
+SFLAG:string
+DATE:date
+low_quality:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+saved_silver_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+silver_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+validated_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+INFO:utils.config_loader:Configuration loaded from /Workspace/Users/rohithsundar.1392001@gmail.com/GHCN-D ETL Project/config/pipeline_config.yaml
+Pipeline configuration loaded successfully
+Silver processor initialized
+Bronze data loaded:
+Total records: 4482432
+Unique stations: 913
+
+Element distribution:
++-------+-------+
+|ELEMENT|  count|
++-------+-------+
+|   PRCP|1415867|
+|   SNOW| 842435|
+|   TMAX| 429368|
+|   TMIN| 429199|
+|   SNWD| 285279|
+|   TOBS| 221884|
+|   TAVG| 135189|
+|   WSF2|  69819|
+|   WDF2|  69810|
+|   AWND|  69776|
+|   WSF5|  67421|
+|   WDF5|  67369|
+|   WT01|  37858|
+|   DAPR|  28701|
+|   MDPR|  28594|
+|   RHMN|  28522|
+|   RHMX|  28522|
+|   RHAV|  28520|
+|   ADPT|  28437|
+|   AWBT|  28437|
++-------+-------+
+only showing top 20 rows
+INFO:transform.silver_processor:Silver processing complete: 1541046 records
+Silver processing complete: 1541046 records
+Sample of silver data:
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+|         ID|      DATE|year|month|day|TMAX|TMIN|PRCP|SNOW|SNWD|LATITUDE|LONGITUDE|ELEVATION|STATE|                NAME|COUNTRY|data_quality_score|
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+|US1GALW0018|2021-07-15|2021|    7| 15|NULL|NULL| 0.0| 0.0|NULL| 30.9145| -83.2522|     64.0|   GA|    VALDOSTA 4.8 NNE|       |               0.4|
+|USC00097777|2024-07-20|2024|    7| 20|31.7|21.1| 6.4| 0.0| 0.0| 32.9744| -82.8045|    137.5|   GA|        SANDERSVILLE|       |               1.0|
+|USC00092450|2015-12-26|2015|   12| 26|25.6|17.8| 0.0|NULL|NULL| 31.7672| -84.7931|    140.5|   GA|            CUTHBERT|       |               0.6|
+|US1GAUP0001|2020-02-01|2020|    2|  1|NULL|NULL| 0.5|NULL|NULL| 32.9774| -84.2391|    235.3|   GA|      THE ROCK 1.0 N|       |               0.2|
+|US1GAOG0012|2022-08-09|2022|    8|  9|NULL|NULL| 0.0|NULL|NULL| 33.8601| -83.2418|    195.1|   GA|ARNOLDSVILLE 3.7 SSW|       |               0.2|
+|US1GAPK0002|2016-08-14|2016|    8| 14|NULL|NULL| 4.6|NULL|NULL| 33.1017| -84.3464|    257.9|   GA|     ZEBULON 0.3 WNW|       |               0.2|
+|USC00096087|2017-01-14|2017|    1| 14|23.3| 8.9| 0.0| 0.0| 0.0| 31.1728| -83.7481|    103.6|   GA|      MOULTRIE 2 ESE|       |               1.0|
+|US1GARB0004|2017-12-04|2017|   12|  4|NULL|NULL| 0.0| 0.0|NULL| 34.9415| -83.4178|    672.7|   GA|    RABUN GAP 2.1 SW|       |               0.4|
+|USC00096335|2022-08-29|2022|    8| 29|31.1|20.0|NULL| 0.0| 0.0| 33.3997|  -84.915|    242.3|   GA|        NEWNAN 7 WNW|       |               0.8|
+|USC00091732|2023-08-28|2023|    8| 28|32.8|22.8|16.8| 0.0| 0.0| 34.0589| -85.2339|    239.3|   GA|           CEDARTOWN|       |               1.0|
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+only showing top 10 rows
+Silver layer schema:
+root
+ |-- ID: string (nullable = true)
+ |-- DATE: date (nullable = true)
+ |-- year: integer (nullable = true)
+ |-- month: integer (nullable = true)
+ |-- day: integer (nullable = true)
+ |-- TMAX: double (nullable = true)
+ |-- TMIN: double (nullable = true)
+ |-- PRCP: double (nullable = true)
+ |-- SNOW: double (nullable = true)
+ |-- SNWD: double (nullable = true)
+ |-- LATITUDE: double (nullable = true)
+ |-- LONGITUDE: double (nullable = true)
+ |-- ELEVATION: double (nullable = true)
+ |-- STATE: string (nullable = true)
+ |-- NAME: string (nullable = true)
+ |-- COUNTRY: string (nullable = true)
+ |-- data_quality_score: double (nullable = true)
+
+Data completeness by element:
+TMAX: 27.9%
+TMIN: 27.9%
+PRCP: 91.9%
+SNOW: 54.7%
+SNWD: 18.5%
+Data quality score distribution:
++-------+------------------+
+|summary|data_quality_score|
++-------+------------------+
+|  count|           1541046|
+|   mean|               1.0|
+| stddev|               0.0|
+|    min|               1.0|
+|    max|               1.0|
++-------+------------------+
+
+Records with quality score < 0.5: 0
+Station distribution by state:
++-----+-------+
+|STATE|  count|
++-----+-------+
+|   GA|1541046|
++-----+-------+
+
+Station elevation statistics:
++-------+-----------------+
+|summary|        ELEVATION|
++-------+-----------------+
+|  count|          1541046|
+|   mean|214.4180319082182|
+| stddev|175.9503087697662|
+|    min|              0.9|
+|    max|           1711.1|
++-------+-----------------+
+
+Sample of station locations:
++-----------+--------------------+--------+---------+---------+
+|         ID|                NAME|LATITUDE|LONGITUDE|ELEVATION|
++-----------+--------------------+--------+---------+---------+
+|US1GACK0040|GAINES SCHOOL 2.4...| 33.8948| -83.3244|    223.7|
+|US1GAFY0030|PEACHTREE CITY 0....| 33.3897| -84.5644|    263.7|
+|US1GAFY0001|     WOOLSEY 2.5 SSW| 33.3269| -84.4236|    236.5|
+|US1GAOG0030|      CRAWFORD 1.5 E| 33.8833| -83.1296|    214.3|
+|US1GAFS0038|  ALPHARETTA 6.2 NNE| 34.1536| -84.2363|    346.9|
+|US1GALE0002|       ALBANY 4.6 NW| 31.6294| -84.2253|     75.3|
+|US1GADK0002|        TUCKER 2.3 W|  33.858| -84.2637|    301.1|
+|US1GACK0017|       ATHENS 3.2 NW| 33.9841| -83.4378|    228.9|
+|US1GACU0007|    GROVETOWN 3.4 NE| 33.4835| -82.1615|    132.9|
+|US1GAGW0056|STONE MOUNTAIN 4.9 E| 33.7958| -84.0864|    260.0|
++-----------+--------------------+--------+---------+---------+
+only showing top 10 rows
+Temperature statistics:
++-------+------------------+------------------+
+|summary|              TMAX|              TMIN|
++-------+------------------+------------------+
+|  count|            429349|            429197|
+|   mean|24.190834263035537|11.917098441974046|
+| stddev| 7.913661322283547| 8.372578603051007|
+|    min|             -11.7|             -21.7|
+|    max|              49.2|              49.8|
++-------+------------------+------------------+
+
+Precipitation statistics:
++-------+------------------+
+|summary|              PRCP|
++-------+------------------+
+|  count|           1415768|
+|   mean| 4.205079433919034|
+| stddev|11.371644311410382|
+|    min|               0.0|
+|    max|             199.9|
++-------+------------------+
+
+Average temperature by month:
++-----+------------------+------------------+
+|month|          avg_tmax|          avg_tmin|
++-----+------------------+------------------+
+|    1|13.659565814493972|1.6038137718071188|
+|    2|  17.2404527072241| 4.573715150456897|
+|    3| 20.81968487171299| 7.345971437706486|
+|    4| 24.27719781734001|10.561068344231977|
+|    5| 27.97096285855974| 15.43415730337078|
+|    6|31.126044039483688|19.494400391049297|
+|    7|  32.6149737159128|21.374714881017645|
+|    8| 31.88189272292445| 20.98361897170184|
+|    9|  29.6287150142315| 18.14263262461819|
+|   10|25.254306856283975| 12.22089720273665|
+|   11| 19.66021873882469|6.7343559195830265|
+|   12|15.927951011899582|4.3966990965948565|
++-----+------------------+------------------+
+
+INFO:transform.silver_processor:Silver data saved to /Volumes/workspace/ghcn/ghcnvol/data/silver
+Silver layer statistics:
+total_records: 1541046
+unique_stations: 912
+date_range: {'min_date': datetime.date(2015, 1, 1), 'max_date': datetime.date(2025, 7, 17)}
+avg_quality_score: 1.0
+completeness: {'TMAX': 0.27860881505159485, 'TMIN': 0.2785101807473625, 'PRCP': 0.9187058660156803, 'SNOW': 0.5466644084602277, 'SNWD': 0.18512036629665823}
+Verification of saved silver data:
+Record count: 1541046
+
+Sample of saved data:
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+|         ID|      DATE|year|month|day|TMAX|TMIN|PRCP|SNOW|SNWD|LATITUDE|LONGITUDE|ELEVATION|STATE|                NAME|COUNTRY|data_quality_score|
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+|US1GAGW0017|2020-11-20|2020|   11| 20|NULL|NULL| 0.0|NULL|NULL| 34.0148| -83.8968|    296.0|   GA|      DACULA 2.1 NNW|       |               1.0|
+|USC00090969|2020-11-30|2020|   11| 30|20.0|-1.7|17.5| 0.0| 0.0| 34.8544| -83.9444|    594.1|   GA| BLAIRSVILLE EXP STN|       |               1.0|
+|USC00097808|2020-11-18|2020|   11| 18|22.2| 8.9| 0.0|NULL|NULL| 31.3981| -81.2808|      3.0|   GA|           SAPELO IS|       |               1.0|
+|US1GAAP0005|2020-11-25|2020|   11| 25|NULL|NULL| 0.0| 0.0|NULL|  31.774| -82.3472|     61.6|   GA|      BAXLEY 0.7 NNE|       |               1.0|
+|USR0000GPLA|2020-11-26|2020|   11| 26|24.4|16.7|NULL|NULL|NULL| 32.0097|   -84.33|    160.3|   GA|PLAINS/SUMTER GEO...|       |               1.0|
+|US1GACT0036|2020-11-30|2020|   11| 30|NULL|NULL|20.8|NULL|NULL| 31.9425| -81.1596|      4.0|   GA|    SAVANNAH 5.9 SSW|       |               1.0|
+|USC00092266|2020-11-08|2020|   11|  8|26.7|18.9| 0.8| 0.0| 0.0|  31.985| -83.7747|     93.9|   GA|             CORDELE|       |               1.0|
+|USR0000GMID|2020-11-23|2020|   11| 23|23.9| 8.3|NULL|NULL|NULL| 31.7842| -81.4386|      6.1|   GA|      MIDWAY GEORGIA|       |               1.0|
+|USW00093842|2020-11-26|2020|   11| 26|23.3|15.0|33.8|NULL|NULL| 32.5164| -84.9422|    120.1|   GA|   COLUMBUS METRO AP|       |               1.0|
+|US1GALB0006|2020-11-07|2020|   11|  7|NULL|NULL| 2.8|NULL|NULL| 31.8347| -81.3749|      2.7|   GA|       MIDWAY 3.8 NE|       |               1.0|
++-----------+----------+----+-----+---+----+----+----+----+----+--------+---------+---------+-----+--------------------+-------+------------------+
+only showing top 10 rows

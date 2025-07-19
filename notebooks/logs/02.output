@@ -1,0 +1,119 @@
+bronze_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+day:integer
+ELEMENT:string
+VALUE:integer
+MFLAG:string
+QFLAG:string
+SFLAG:string
+DATE:date
+all_bronze_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+day:integer
+ELEMENT:string
+VALUE:integer
+MFLAG:string
+QFLAG:string
+SFLAG:string
+DATE:date
+saved_bronze_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+day:integer
+ELEMENT:string
+VALUE:integer
+MFLAG:string
+QFLAG:string
+SFLAG:string
+DATE:date
+INFO:utils.config_loader:Configuration loaded from /Workspace/Users/rohithsundar.1392001@gmail.com/GHCN-D ETL Project/config/pipeline_config.yaml
+Pipeline configuration loaded successfully
+Found 913 .dly files to process
+Sample files: ['/Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/US1GAAP0004.dly', '/Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/US1GAAP0005.dly', '/Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/US1GAAP0006.dly']
+Processing 913 files in 1 batches
+INFO:transform.bronze_processor:Processed 5 .dly files into 7578 records
+Sample of processed bronze data:
+
+Table
+7,578 rows
+|
+1h 25m runtime
+Bronze layer schema:
+root
+ |-- ID: string (nullable = true)
+ |-- year: integer (nullable = true)
+ |-- month: integer (nullable = true)
+ |-- day: integer (nullable = false)
+ |-- ELEMENT: string (nullable = true)
+ |-- VALUE: integer (nullable = true)
+ |-- MFLAG: string (nullable = true)
+ |-- QFLAG: string (nullable = true)
+ |-- SFLAG: string (nullable = true)
+ |-- DATE: date (nullable = true)
+
+INFO:transform.bronze_processor:Processed 913 .dly files into 4482432 records
+Total bronze records: 4482432
+Bronze layer statistics:
+Total records: 4482432
+Unique stations: 913
+Date range: 2015 - 2025
+
+Element distribution:
++-------+-------+
+|ELEMENT|  count|
++-------+-------+
+|   PRCP|1415867|
+|   SNOW| 842435|
+|   TMAX| 429368|
+|   TMIN| 429199|
+|   SNWD| 285279|
+|   TOBS| 221884|
+|   TAVG| 135189|
+|   WSF2|  69819|
+|   WDF2|  69810|
+|   AWND|  69776|
+|   WSF5|  67421|
+|   WDF5|  67369|
+|   WT01|  37858|
+|   DAPR|  28701|
+|   MDPR|  28594|
+|   RHMX|  28522|
+|   RHMN|  28522|
+|   RHAV|  28520|
+|   AWBT|  28437|
+|   ADPT|  28437|
++-------+-------+
+only showing top 20 rows
+Data quality checks:
+Missing values: 0
+Extreme temperature values: 21
+INFO:transform.bronze_processor:Bronze data saved to /Volumes/workspace/ghcn/ghcnvol/data/bronze
+Bronze layer statistics:
+total_records: 4482432
+unique_stations: 913
+date_range: {'min_year': 2015, 'max_year': 2025}
+elements: [Row(ELEMENT='SX32'), Row(ELEMENT='SNWD'), Row(ELEMENT='SX52'), Row(ELEMENT='RHMN'), Row(ELEMENT='AWBT'), Row(ELEMENT='PRCP'), Row(ELEMENT='WT02'), Row(ELEMENT='MDPR'), Row(ELEMENT='WT03'), Row(ELEMENT='PGTM'), Row(ELEMENT='WDF2'), Row(ELEMENT='AWND'), Row(ELEMENT='SNOW'), Row(ELEMENT='WT01'), Row(ELEMENT='WT04'), Row(ELEMENT='WDF5'), Row(ELEMENT='DAPR'), Row(ELEMENT='ASTP'), Row(ELEMENT='WESF'), Row(ELEMENT='RHAV'), Row(ELEMENT='TAVG'), Row(ELEMENT='SN52'), Row(ELEMENT='WT05'), Row(ELEMENT='SN32'), Row(ELEMENT='WSF5'), Row(ELEMENT='TMIN'), Row(ELEMENT='ADPT'), Row(ELEMENT='WT11'), Row(ELEMENT='WT06'), Row(ELEMENT='PSUN'), Row(ELEMENT='WSF2'), Row(ELEMENT='WESD'), Row(ELEMENT='TMAX'), Row(ELEMENT='WT10'), Row(ELEMENT='RHMX'), Row(ELEMENT='TSUN'), Row(ELEMENT='ASLP'), Row(ELEMENT='WT08'), Row(ELEMENT='TOBS')]
+Verification of saved bronze data:
+Record count: 4482432
+
+Sample of saved data:
++-----------+----+-----+---+-------+-----+-----+-----+-----+----------+
+|         ID|year|month|day|ELEMENT|VALUE|MFLAG|QFLAG|SFLAG|      DATE|
++-----------+----+-----+---+-------+-----+-----+-----+-----+----------+
+|US1GAAP0005|2020|   11|  1|   PRCP|   30|     |     |    N|2020-11-01|
+|US1GAAP0005|2020|   11|  2|   PRCP|    8|     |     |    N|2020-11-02|
+|US1GAAP0005|2020|   11|  3|   PRCP|    0|     |     |    N|2020-11-03|
+|US1GAAP0005|2020|   11|  4|   PRCP|    0|     |     |    N|2020-11-04|
+|US1GAAP0005|2020|   11|  5|   PRCP|    0|     |     |    N|2020-11-05|
+|US1GAAP0005|2020|   11|  6|   PRCP|    0|     |     |    N|2020-11-06|
+|US1GAAP0005|2020|   11|  7|   PRCP|    3|     |     |    N|2020-11-07|
+|US1GAAP0005|2020|   11|  8|   PRCP|   25|     |     |    N|2020-11-08|
+|US1GAAP0005|2020|   11|  9|   PRCP|   13|     |     |    N|2020-11-09|
+|US1GAAP0005|2020|   11| 10|   PRCP|   13|     |     |    N|2020-11-10|
++-----------+----+-----+---+-------+-----+-----+-----+-----+----------+
+only showing top 10 rows

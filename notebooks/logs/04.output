@@ -1,0 +1,388 @@
+climate_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+month:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+normal_tmax:double
+normal_tmin:double
+normal_temp:double
+normal_precip:double
+tmax_stddev:double
+tmin_stddev:double
+precip_stddev:double
+record_low:double
+record_high:double
+record_precip:double
+total_observations:long
+years_of_data:long
+climate_zone:string
+precipitation_regime:string
+elevation_climate:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+NAME:string
+ELEVATION:double
+normal_temp:double
+normal_precip:double
+climate_zone:string
+extreme_weather:pyspark.sql.connect.dataframe.DataFrame
+year:integer
+ID:string
+NAME:string
+hot_days:long
+freezing_days:long
+heavy_precip_days:long
+ml_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+day_of_year:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+tmax_lag1:double
+tmin_lag1:double
+prcp_lag1:double
+tmax_7day_avg:double
+tmin_7day_avg:double
+prcp_7day_sum:double
+temp_range:double
+tmax_anomaly:double
+tmin_anomaly:double
+prcp_anomaly:double
+month_sin:double
+month_cos:double
+data_quality_score:double
+monthly_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+avg_tmax:double
+avg_tmin:double
+avg_temp:double
+min_temp:double
+max_temp:double
+total_precip:double
+avg_precip:double
+max_precip:double
+total_snow:double
+avg_snow:double
+max_snow:double
+max_snow_depth:double
+record_count:long
+days_with_precip:long
+days_with_snow:long
+days_with_snow_cover:long
+avg_quality_score:double
+temperature_range:double
+precip_days_pct:double
+snow_days_pct:double
+silver_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+temp_trends:pyspark.sql.connect.dataframe.DataFrame
+year:integer
+state_avg_temp:double
+state_min_temp:double
+state_max_temp:double
+yearly_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+avg_tmax:double
+avg_tmin:double
+avg_temp:double
+min_temp:double
+max_temp:double
+annual_precip:double
+avg_daily_precip:double
+max_daily_precip:double
+annual_snow:double
+max_daily_snow:double
+max_snow_depth:double
+hot_days:long
+freezing_days:long
+heavy_precip_days:long
+record_count:long
+avg_quality_score:double
+growing_season_length:long
+heat_stress_days:long
+moisture_index:double
+INFO:utils.config_loader:Configuration loaded from /Workspace/Users/rohithsundar.1392001@gmail.com/GHCN-D ETL Project/config/pipeline_config.yaml
+Pipeline configuration loaded successfully
+Gold processor initialized
+Silver data loaded:
+Total records: 1541046
+Date range: Row(min(DATE)=datetime.date(2015, 1, 1), max(DATE)=datetime.date(2025, 7, 17))
+INFO:transform.gold_processor:Gold table monthly_climate saved to /Volumes/workspace/ghcn/ghcnvol/data/gold/monthly_climate
+INFO:transform.gold_processor:Gold table yearly_climate saved to /Volumes/workspace/ghcn/ghcnvol/data/gold/yearly_climate
+INFO:transform.gold_processor:Gold table climate_summaries saved to /Volumes/workspace/ghcn/ghcnvol/data/gold/climate_summaries
+INFO:transform.gold_processor:Gold table ml_features saved to /Volumes/workspace/ghcn/ghcnvol/data/gold/ml_features
+INFO:transform.gold_processor:Gold layer processing complete
+Gold layer processing complete!
+Monthly climate aggregates:
+Total records: 61817
+Unique stations: 912
+
+Sample monthly data:
++-----------+----+-----+--------+---------+---------+-----+--------------------+------------------+------------------+------------------+--------+--------+------------------+-------------------+----------+----------+--------+--------+--------------+------------+----------------+--------------+--------------------+-----------------+------------------+------------------+-------------+
+|         ID|year|month|LATITUDE|LONGITUDE|ELEVATION|STATE|                NAME|          avg_tmax|          avg_tmin|          avg_temp|min_temp|max_temp|      total_precip|         avg_precip|max_precip|total_snow|avg_snow|max_snow|max_snow_depth|record_count|days_with_precip|days_with_snow|days_with_snow_cover|avg_quality_score| temperature_range|   precip_days_pct|snow_days_pct|
++-----------+----+-----+--------+---------+---------+-----+--------------------+------------------+------------------+------------------+--------+--------+------------------+-------------------+----------+----------+--------+--------+--------------+------------+----------------+--------------+--------------------+-----------------+------------------+------------------+-------------+
+|US1GAGW0033|2020|   11| 34.0079| -84.1377|    326.1|   GA|      DULUTH 0.9 ENE|              NULL|              NULL|              NULL|    NULL|    NULL|103.69999999999999|  3.456666666666666|      47.8|       0.0|     0.0|     0.0|          NULL|          30|               6|             0|                   0|              1.0|              NULL|              20.0|          0.0|
+|US1GACK0012|2020|   11| 33.9597| -83.3855|    224.3|   GA|      ATHENS 0.6 ENE|              NULL|              NULL|              NULL|    NULL|    NULL|               3.3|0.27499999999999997|       3.3|       0.0|     0.0|     0.0|          NULL|          12|               1|             0|                   0|              1.0|              NULL| 8.333333333333332|          0.0|
+|US1GAFN0007|2020|   11| 34.8344| -84.2185|    588.6|   GA|   MORGANTON 3.1 SSE|              NULL|              NULL|              NULL|    NULL|    NULL| 67.39999999999999| 2.2466666666666666|      21.1|       0.0|     0.0|     0.0|          NULL|          30|               6|             0|                   0|              1.0|              NULL|              20.0|          0.0|
+|US1GASM0002|2020|   11| 30.7844|  -84.867|     35.7|   GA|DONALSONVILLE 17.7 S|              NULL|              NULL|              NULL|    NULL|    NULL|              38.6| 1.2866666666666666|      14.5|      NULL|    NULL|    NULL|          NULL|          30|               6|             0|                   0|              1.0|              NULL|              20.0|          0.0|
+|USR0000GCML|2020|   11| 31.2142| -84.2364|     18.9|   GA|     CAMILLA GEORGIA|24.480000000000004|11.833333333333336| 18.15666666666667|     1.7|    30.6|              NULL|               NULL|      NULL|      NULL|    NULL|    NULL|          NULL|          30|               0|             0|                   0|              1.0|28.900000000000002|               0.0|          0.0|
+|US1GABW0004|2020|   11| 34.0426| -83.6919|    226.2|   GA|      WINDER 3.9 NNE|              NULL|              NULL|              NULL|    NULL|    NULL|             103.9| 3.4633333333333334|      41.1|       0.0|     0.0|     0.0|          NULL|          30|               9|             0|                   0|              1.0|              NULL|              30.0|          0.0|
+|USW00053819|2020|   11| 33.3636| -84.5658|    296.3|   GA|             ATLANTA| 20.99333333333333| 6.803333333333333|13.898333333333332|    -1.0|    26.1|              84.0|  2.896551724137931|      41.7|       0.0|     0.0|     0.0|          NULL|          30|               8|             0|                   0|              1.0|              27.1|26.666666666666668|          0.0|
+|US1GAMA0023|2020|   11| 34.1735| -83.1535|    234.4|   GA| DANIELSVILLE 5.1 NE|              NULL|              NULL|              NULL|    NULL|    NULL|102.69999999999999| 12.837499999999999|      49.5|      NULL|    NULL|    NULL|          NULL|           8|               8|             0|                   0|              1.0|              NULL|             100.0|          0.0|
+|US1GAGW0057|2020|   11| 33.8927| -84.0755|    262.4|   GA|LAWRENCEVILLE 6.2 SW|              NULL|              NULL|              NULL|    NULL|    NULL| 77.60000000000001| 2.6758620689655177|      35.6|       0.0|     0.0|     0.0|          NULL|          29|               6|             0|                   0|              1.0|              NULL|20.689655172413794|          0.0|
+|USC00095205|2020|   11| 33.7244| -82.4675|    145.1|   GA|     LINCOLNTON 4.4S|              NULL|              NULL|              NULL|    NULL|    NULL|             117.4| 3.9133333333333336|      43.2|       0.0|     0.0|     0.0|           0.0|          30|               9|             0|                   0|              1.0|              NULL|              30.0|          0.0|
++-----------+----+-----+--------+---------+---------+-----+--------------------+------------------+------------------+------------------+--------+--------+------------------+-------------------+----------+----------+--------+--------+--------------+------------+----------------+--------------+--------------------+-----------------+------------------+------------------+-------------+
+only showing top 10 rows
+Average monthly temperatures across all stations:
++-----+------------------+------------------+
+|month|          avg_temp|        avg_precip|
++-----+------------------+------------------+
+|    1| 7.646703813154014|108.34849337083166|
+|    2|10.937362396994258|106.25040257648949|
+|    3|14.082769573958554| 95.60217695226687|
+|    4|17.440642445675252|107.91669319538398|
+|    5|21.702095237799007| 98.22737672583824|
+|    6| 25.31855849999213|104.85456517452177|
+|    7|27.016064005609113| 113.2549385164617|
+|    8|  26.4388295673607|125.71081777205409|
+|    9|23.911197950263954| 95.20557580956465|
+|   10|18.754997966747872| 72.63070348454966|
+|   11|13.236921924418217| 78.18113372729238|
+|   12|10.164093679349994| 120.3440282062583|
++-----+------------------+------------------+
+
+Yearly climate aggregates:
+Total records: 5966
+
+Sample yearly data:
++-----------+----+--------+---------+---------+-----+-------------------+------------------+------------------+------------------+--------+--------+------------------+------------------+----------------+-----------+--------------+--------------+--------+-------------+-----------------+------------+-----------------+---------------------+----------------+------------------+
+|         ID|year|LATITUDE|LONGITUDE|ELEVATION|STATE|               NAME|          avg_tmax|          avg_tmin|          avg_temp|min_temp|max_temp|     annual_precip|  avg_daily_precip|max_daily_precip|annual_snow|max_daily_snow|max_snow_depth|hot_days|freezing_days|heavy_precip_days|record_count|avg_quality_score|growing_season_length|heat_stress_days|    moisture_index|
++-----------+----+--------+---------+---------+-----+-------------------+------------------+------------------+------------------+--------+--------+------------------+------------------+----------------+-----------+--------------+--------------+--------+-------------+-----------------+------------+-----------------+---------------------+----------------+------------------+
+|US1GAPT0008|2025| 33.3792| -83.3128|   1711.1|   GA|    EATONTON 5.8 NE|              NULL|              NULL|              NULL|    NULL|    NULL| 748.4000000000002|  4.27657142857143|           127.0|        0.0|           0.0|          NULL|       0|            0|               12|         177|              1.0|                  365|               0|0.7484000000000002|
+|US1GADD0001|2025| 34.7918| -85.4905|    602.9|   GA|      TRENTON 5.8 S|              NULL|              NULL|              NULL|    NULL|    NULL| 834.6000000000001| 4.967857142857143|            59.2|        0.0|           0.0|          NULL|       0|            0|               11|         168|              1.0|                  365|               0|0.8346000000000001|
+|US1GAEF0017|2025|  32.367| -81.2673|     20.1|   GA|  SPRINGFIELD 2.4 E|              NULL|              NULL|              NULL|    NULL|    NULL| 657.6000000000001| 3.633149171270719|            90.4|        7.6|           7.6|          NULL|       0|            0|                9|         182|              1.0|                  365|               0|0.6576000000000002|
+|US1GAHS0024|2025| 32.6485| -83.7242|    145.4|   GA|        BYRON 2.0 E|              NULL|              NULL|              NULL|    NULL|    NULL| 930.4999999999998|4.7474489795918355|            87.1|        0.0|           0.0|          NULL|       0|            0|               11|         196|              1.0|                  365|               0|0.9304999999999998|
+|US1GAEV0001|2025| 32.1932| -81.9684|     44.2|   GA|    BELLVILLE 2.8 N|              NULL|              NULL|              NULL|    NULL|    NULL| 517.3000000000001| 2.694270833333334|            52.6|        8.4|           8.4|          NULL|       0|            0|                4|         193|              1.0|                  365|               0|0.5173000000000001|
+|USW00003820|2025| 33.3653| -81.9636|     40.8|   GA|AUGUSTA BUSH FLD AP|24.616243654822334|10.418781725888325|17.517512690355325|    -8.8|    37.2| 624.7000000000003| 3.171065989847717|            52.1|        6.8|           4.3|           2.5|      38|           29|                6|         197|              1.0|                  336|              38|0.6247000000000003|
+|US1GAFT0073|2025| 33.8174| -84.3573|    256.6|   GA|     ATLANTA 5.3 NE|              NULL|              NULL|              NULL|    NULL|    NULL| 573.9000000000001|4.9904347826086966|           108.5|        0.0|           0.0|           5.1|       0|            0|                4|         116|              1.0|                  365|               0|0.5739000000000001|
+|US1GALN0003|2025| 31.0361| -83.1565|     62.8|   GA|     LAKELAND 4.8 W|              NULL|              NULL|              NULL|    NULL|    NULL| 717.1999999999998|3.7747368421052623|           103.6|        7.6|           7.6|           7.6|       0|            0|               10|         190|              1.0|                  365|               0|0.7171999999999998|
+|US1GAMI0001|2025| 31.6117| -81.3036|     11.0|   GA|   RICEBORO 11.4 SE|              NULL|              NULL|              NULL|    NULL|    NULL|489.70000000000005| 3.099367088607595|            53.8|        0.0|           0.0|          NULL|       0|            0|                6|         158|              1.0|                  365|               0|            0.4897|
+|USC00095205|2025| 33.7244| -82.4675|    145.1|   GA|    LINCOLNTON 4.4S|              NULL|              NULL|              NULL|    NULL|    NULL|             623.5| 3.281578947368421|            84.3|        5.0|           2.5|           2.5|       0|            0|                7|         192|              1.0|                  365|               0|            0.6235|
++-----------+----+--------+---------+---------+-----+-------------------+------------------+------------------+------------------+--------+--------+------------------+------------------+----------------+-----------+--------------+--------------+--------+-------------+-----------------+------------+-----------------+---------------------+----------------+------------------+
+only showing top 10 rows
+Yearly temperature trends:
++----+------------------+------------------+------------------+
+|year|          avg_temp|        avg_precip|      avg_hot_days|
++----+------------------+------------------+------------------+
+|2015| 18.83960004035884|1154.9846011131724|14.598591549295774|
+|2016| 18.20798433732355| 794.5050751879696| 19.09625668449198|
+|2017| 18.29961800248951| 1055.637262357415|11.465827338129497|
+|2018|17.357599853720473|1260.9324218750014| 14.33271719038817|
+|2019| 18.25638411404194| 986.9501953124994| 18.10166358595194|
+|2020| 17.95370683300497|1315.1994360902263|11.049910873440286|
+|2021|17.537448931992913|1120.0804832713757| 8.160493827160494|
+|2022|17.610424669752874|  997.640157480315|11.977611940298507|
+|2023|18.104908151392262|1054.3250980392152| 11.35754189944134|
+|2024|18.350604168706866|1164.6715725806444|13.704198473282442|
+|2025| 16.70391331910174| 622.3069506726463|   6.5042194092827|
++----+------------------+------------------+------------------+
+
+Climate summaries:
+Total records: 10206
+
+Sample climate summaries:
++-----------+-----+--------+---------+---------+-----+-------------------+-----------+-----------+-----------+------------------+-----------+-----------+------------------+----------+-----------+-------------+------------------+-------------+------------+--------------------+
+|         ID|month|LATITUDE|LONGITUDE|ELEVATION|STATE|               NAME|normal_tmax|normal_tmin|normal_temp|     normal_precip|tmax_stddev|tmin_stddev|     precip_stddev|record_low|record_high|record_precip|total_observations|years_of_data|climate_zone|precipitation_regime|
++-----------+-----+--------+---------+---------+-----+-------------------+-----------+-----------+-----------+------------------+-----------+-----------+------------------+----------+-----------+-------------+------------------+-------------+------------+--------------------+
+|US1GAUN0008|    8| 34.8363| -84.0943|    610.8|   GA|BLAIRSVILLE 8.5 WSW|       NULL|       NULL|       NULL|4.7754512635379065|       NULL|       NULL| 14.02387625875905|      NULL|       NULL|        147.3|               277|            9|        Cold|            Moderate|
+|US1GANW0001|    1| 33.5748| -83.8775|    224.9|   GA|   COVINGTON 2.4 SW|       NULL|       NULL|       NULL|             5.466|       NULL|       NULL|12.759306813769037|      NULL|       NULL|         90.7|               300|           10|        Cold|                 Wet|
+|US1GACB0006|    1| 33.9566| -84.6717|    318.2|   GA|    KENNESAW 5.6 SW|       NULL|       NULL|       NULL| 4.799402985074627|       NULL|       NULL|11.531072299878316|      NULL|       NULL|         75.2|               335|           11|        Cold|            Moderate|
+|US1GABB0006|    6| 32.8931| -83.7303|    144.2|   GA|       MACON 5.8 NW|       NULL|       NULL|       NULL| 4.119622641509434|       NULL|       NULL| 8.504534878135594|      NULL|       NULL|         57.9|               265|           11|        Cold|            Moderate|
+|USC00098661|    6| 32.8669| -84.2653|    189.0|   GA|      THOMASTON 4SE|       NULL|       NULL|       NULL|2.8993421052631576|       NULL|       NULL| 8.505646715822046|      NULL|       NULL|         63.0|               300|           10|        Cold|            Moderate|
+|US1GALW0019|    8| 30.8474| -83.3292|     50.0|   GA|     VALDOSTA 3.0 W|       NULL|       NULL|       NULL| 4.255675675675676|       NULL|       NULL|10.946355493491625|      NULL|       NULL|        123.4|               185|           10|        Cold|            Moderate|
+|US1GAMN0007|    5| 33.0363| -83.9593|    191.4|   GA|      FORSYTH 1.1 W|       NULL|       NULL|       NULL| 3.838414634146341|       NULL|       NULL|10.072561811895923|      NULL|       NULL|         77.2|               328|           11|        Cold|            Moderate|
+|US1GAWL0012|   12| 33.8355| -83.8255|    275.5|   GA|   LOGANVILLE 4.0 E|       NULL|       NULL|       NULL| 5.379649122807018|       NULL|       NULL| 12.71543117701074|      NULL|       NULL|         78.7|               285|           10|        Cold|                 Wet|
+|US1GALW0004|    3|  30.683|  -83.236|     49.1|   GA|    LAKE PARK 2.8 W|       NULL|       NULL|       NULL| 3.274117647058824|       NULL|       NULL| 9.734931209301644|      NULL|       NULL|         70.9|               340|           11|        Cold|            Moderate|
+|US1GAGY0003|    1| 30.8598| -84.1474|     64.3|   GA|      CAIRO 3.7 ESE|       NULL|       NULL|       NULL| 5.165202702702703|       NULL|       NULL|13.970284637047602|      NULL|       NULL|        118.4|               296|           11|        Cold|                 Wet|
++-----------+-----+--------+---------+---------+-----+-------------------+-----------+-----------+-----------+------------------+-----------+-----------+------------------+----------+-----------+-------------+------------------+-------------+------------+--------------------+
+only showing top 10 rows
+Climate zone distribution:
++------------+-----+
+|climate_zone|count|
++------------+-----+
+|         Hot|  763|
+|   Temperate|  701|
+|        Cold| 8493|
+|        Cool|  249|
++------------+-----+
+
+Precipitation regime distribution:
++--------------------+-----+
+|precipitation_regime|count|
++--------------------+-----+
+|                 Dry| 1126|
+|            Moderate| 6055|
+|                 Wet| 3025|
++--------------------+-----+
+
+ML features dataset:
+Total records: 1541046
+Number of features: 28
++-----------+----------+----+-----+---+-----------+--------+---------+---------+-----+----+----+----+----+----+---------+---------+---------+-------------+-------------+-------------+----------+------------+------------+--------------------+-------------------+------------------+------------------+
+|         ID|      DATE|year|month|day|day_of_year|LATITUDE|LONGITUDE|ELEVATION|STATE|TMAX|TMIN|PRCP|SNOW|SNWD|tmax_lag1|tmin_lag1|prcp_lag1|tmax_7day_avg|tmin_7day_avg|prcp_7day_sum|temp_range|tmax_anomaly|tmin_anomaly|        prcp_anomaly|          month_sin|         month_cos|data_quality_score|
++-----------+----------+----+-----+---+-----------+--------+---------+---------+-----+----+----+----+----+----+---------+---------+---------+-------------+-------------+-------------+----------+------------+------------+--------------------+-------------------+------------------+------------------+
+|US1GABB0016|2020-11-01|2020|   11|  1|        306| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.5|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          5.0|      NULL|        NULL|        NULL|              -2.618|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-02|2020|   11|  2|        307| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      0.5|         NULL|         NULL|          5.0|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-03|2020|   11|  3|        308| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          4.5|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-04|2020|   11|  4|        309| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          2.0|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-05|2020|   11|  5|        310| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          1.0|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-06|2020|   11|  6|        311| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          0.5|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-07|2020|   11|  7|        312| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 3.0|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          3.5|      NULL|        NULL|        NULL|-0.11799999999999988|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-08|2020|   11|  8|        313| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      3.0|         NULL|         NULL|          3.0|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-09|2020|   11|  9|        314| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 1.3|NULL|NULL|     NULL|     NULL|      0.0|         NULL|         NULL|          4.3|      NULL|        NULL|        NULL| -1.8179999999999998|-0.5000042131337321|0.8660229713168799|               1.0|
+|US1GABB0016|2020-11-10|2020|   11| 10|        315| 32.8383| -83.5482|    133.2|   GA|NULL|NULL| 0.0|NULL|NULL|     NULL|     NULL|      1.3|         NULL|         NULL|          4.3|      NULL|        NULL|        NULL|              -3.118|-0.5000042131337321|0.8660229713168799|               1.0|
++-----------+----------+----+-----+---+-----------+--------+---------+---------+-----+----+----+----+----+----+---------+---------+---------+-------------+-------------+-------------+----------+------------+------------+--------------------+-------------------+------------------+------------------+
+only showing top 10 rows
+Feature statistics:
++-------+------------------+------------------+------------------+------------------+-------------------+------------------+
+|summary|              TMAX|              TMIN|              PRCP|        temp_range|      tmax_7day_avg|     tmin_7day_avg|
++-------+------------------+------------------+------------------+------------------+-------------------+------------------+
+|  count|            429349|            429197|           1415768|            428141|             434807|            435046|
+|   mean|24.190834263035637|11.917098441974007| 4.205079433919247|12.269726328475855| 24.178158424860044|  11.8919645547061|
+| stddev|  7.91366132228355| 8.372578603051002|11.371644311410398| 4.281743723078013| 7.2913230286977395| 7.738329292406786|
+|    min|             -11.7|             -21.7|               0.0|               0.0|-3.1857142857142855|             -18.9|
+|    max|              49.2|              49.8|             199.9|51.099999999999994|               49.2|42.971428571428575|
++-------+------------------+------------------+------------------+------------------+-------------------+------------------+
+
+Gold layer statistics:
+
+monthly_climate:
+  record_count: 61817
+  unique_stations: 912
+  columns: 28
+
+yearly_climate:
+  record_count: 5966
+  unique_stations: 912
+  columns: 26
+
+climate_summaries:
+  record_count: 10206
+  unique_stations: 912
+  columns: 21
+
+ml_features:
+  record_count: 1541046
+  unique_stations: 912
+  columns: 28
+Georgia temperature trends:
++----+------------------+-------------------+------------------+
+|year|    state_avg_temp|     state_min_temp|    state_max_temp|
++----+------------------+-------------------+------------------+
+|2015| 18.83960004035884|  -8.19432624113475| 36.51773049645388|
+|2016| 18.20798433732355|-6.7111111111111095| 36.74962962962964|
+|2017| 18.29961800248951|              -7.25| 35.13030303030301|
+|2018|17.357599853720473|-10.027049180327868| 34.93934426229507|
+|2019| 18.25638411404194| -5.542016806722688| 36.88151260504202|
+|2020| 17.95370683300497| -6.685217391304353| 35.89304347826084|
+|2021|17.537448931992913| -5.040178571428571| 35.15178571428569|
+|2022|17.610424669752874|-11.985585585585584| 37.58108108108109|
+|2023|18.104908151392262| -4.824324324324324|36.681081081081075|
+|2024|18.350604168706866| -9.443750000000007|37.206250000000026|
+|2025| 16.70391331910174| -9.631818181818181|35.661818181818155|
++----+------------------+-------------------+------------------+
+
+Stations with extreme weather events:
++----+-----------+--------------------+--------+-------------+-----------------+
+|year|         ID|                NAME|hot_days|freezing_days|heavy_precip_days|
++----+-----------+--------------------+--------+-------------+-----------------+
+|2015|USC00092006|           CLEVELAND|       3|           21|               16|
+|2015|USC00091619|         CARNESVILLE|       0|            0|               13|
+|2015|USC00091732|           CEDARTOWN|      69|           52|               16|
+|2015|USC00092361|    CRISP CO PWR DAM|      81|           20|               14|
+|2015|USC00090670|         BAXLEY 5NNW|     100|           27|                9|
+|2015|USC00097171|             PRIDGEN|      65|           20|               17|
+|2015|US1GALW0019|      VALDOSTA 3.0 W|       0|            0|               16|
+|2015|US1GABR0002|RICHMOND HILL 0.5 NE|       0|            0|               18|
+|2015|US1GALW0014|    VALDOSTA 2.8 NNE|       0|            0|               18|
+|2015|US1GADS0002|  DOUGLASVILLE 3.7 S|       0|            0|               19|
+|2015|US1GAFY0008|FAYETTEVILLE 1.4 NNW|       0|            0|               24|
+|2015|US1GATW0001|   HIAWASSEE 4.8 SSE|       0|            0|               19|
+|2015|US1GACS0002|     RINGGOLD 2.8 SW|       0|            0|               14|
+|2015|USC00091965|        CLARKESVILLE|      32|           76|               21|
+|2015|US1GAOG0020|       COLBERT 4.1 S|       0|            0|               22|
+|2015|US1GAHB0007|    DEMOREST 6.2 WNW|       0|            0|               23|
+|2015|US1GAPL0005|   CEDARTOWN 4.6 SSW|       0|            0|               14|
+|2015|US1GAOC0015|      BOGART 4.7 SSE|       0|            0|               21|
+|2015|US1GAHL0005| GAINESVILLE 6.3 ESE|       0|            0|               24|
+|2015|USC00099486|         WINTERVILLE|      33|           51|               21|
++----+-----------+--------------------+--------+-------------+-----------------+
+only showing top 20 rows
+Climate by elevation:
++-----------+--------------------+---------+-----------+------------------+------------+
+|         ID|                NAME|ELEVATION|normal_temp|     normal_precip|climate_zone|
++-----------+--------------------+---------+-----------+------------------+------------+
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL|               0.5|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 5.876758409785932|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 4.548299319727891|        Cold|
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL|12.516666666666667|        Cold|
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL|             10.76|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 2.770206489675516|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL| 3.088429752066116|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL|2.4006060606060604|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 2.955519480519481|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 4.662727272727273|        Cold|
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL| 9.783333333333333|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL| 4.402631578947369|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL| 3.357009345794392|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL| 2.560517799352751|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL|           3.64375|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL| 5.047899159663866|        Cold|
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL| 27.03333333333333|        Cold|
+|US1GACT0016| ISLE OF HOPE 1.1 NE|      0.9|       NULL|14.419999999999998|        Cold|
+|US1GACT0041|TYBEE ISLAND 0.6 NNE|      0.9|       NULL| 5.816666666666667|        Cold|
+|US1GAMI0005|     TOWNSEND 5.5 SE|      0.9|       NULL|3.4651515151515153|        Cold|
++-----------+--------------------+---------+-----------+------------------+------------+
+only showing top 20 rows
+Sample datasets exported for external use

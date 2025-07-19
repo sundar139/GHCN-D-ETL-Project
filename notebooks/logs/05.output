@@ -1,0 +1,283 @@
+bronze_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+day:integer
+ELEMENT:string
+VALUE:integer
+MFLAG:string
+QFLAG:string
+SFLAG:string
+DATE:date
+ml_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+day_of_year:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+tmax_lag1:double
+tmin_lag1:double
+prcp_lag1:double
+tmax_7day_avg:double
+tmin_7day_avg:double
+prcp_7day_sum:double
+temp_range:double
+tmax_anomaly:double
+tmin_anomaly:double
+prcp_anomaly:double
+month_sin:double
+month_cos:double
+data_quality_score:double
+monthly_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+month:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+avg_tmax:double
+avg_tmin:double
+avg_temp:double
+min_temp:double
+max_temp:double
+total_precip:double
+avg_precip:double
+max_precip:double
+total_snow:double
+avg_snow:double
+max_snow:double
+max_snow_depth:double
+record_count:long
+days_with_precip:long
+days_with_snow:long
+days_with_snow_cover:long
+avg_quality_score:double
+temperature_range:double
+precip_days_pct:double
+snow_days_pct:double
+prcp_stats:pyspark.sql.connect.dataframe.DataFrame
+summary:string
+PRCP:string
+silver_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+temp_validated:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+DATE:date
+year:integer
+month:integer
+day:integer
+TMAX:double
+TMIN:double
+PRCP:double
+SNOW:double
+SNWD:double
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+COUNTRY:string
+data_quality_score:double
+yearly_df:pyspark.sql.connect.dataframe.DataFrame
+ID:string
+year:integer
+LATITUDE:double
+LONGITUDE:double
+ELEVATION:double
+STATE:string
+NAME:string
+avg_tmax:double
+avg_tmin:double
+avg_temp:double
+min_temp:double
+max_temp:double
+annual_precip:double
+avg_daily_precip:double
+max_daily_precip:double
+annual_snow:double
+max_daily_snow:double
+max_snow_depth:double
+hot_days:long
+freezing_days:long
+heavy_precip_days:long
+record_count:long
+avg_quality_score:double
+growing_season_length:long
+heat_stress_days:long
+moisture_index:double
+INFO:utils.config_loader:Configuration loaded from /Workspace/Users/rohithsundar.1392001@gmail.com/GHCN-D ETL Project/config/pipeline_config.yaml
+Pipeline configuration loaded successfully
+Bronze schema validation: ✓ PASS
+Silver schema validation: ✓ PASS
+Bronze Layer Data Quality Assessment
+========================================
+Total records: 4,482,432
+Unique stations: 913
+Date range: Row(min(year)=2015, max(year)=2025)
+
+Element distribution:
++-------+-------+
+|ELEMENT|  count|
++-------+-------+
+|   PRCP|1415867|
+|   SNOW| 842435|
+|   TMAX| 429368|
+|   TMIN| 429199|
+|   SNWD| 285279|
+|   TOBS| 221884|
+|   TAVG| 135189|
+|   WSF2|  69819|
+|   WDF2|  69810|
+|   AWND|  69776|
+|   WSF5|  67421|
+|   WDF5|  67369|
+|   WT01|  37858|
+|   DAPR|  28701|
+|   MDPR|  28594|
+|   RHMN|  28522|
+|   RHMX|  28522|
+|   RHAV|  28520|
+|   ADPT|  28437|
+|   AWBT|  28437|
++-------+-------+
+only showing top 20 rows
+Missing values: 0
+Silver Layer Data Quality Assessment
+========================================
+Total records: 1,541,046
+Unique stations: 912
+
+Data completeness by element:
+  TMAX: 27.9%
+  TMIN: 27.9%
+  PRCP: 91.9%
+  SNOW: 54.7%
+  SNWD: 18.5%
+
+Data quality score distribution:
++-------+------------------+
+|summary|data_quality_score|
++-------+------------------+
+|  count|           1541046|
+|   mean|               1.0|
+| stddev|               0.0|
+|    min|               1.0|
+|    max|               1.0|
++-------+------------------+
+
+Records with quality score < 0.3: 0
+Temperature Validation
+====================
+Temperature anomalies: 36
+Temperature inconsistencies (TMAX < TMIN): 0
+Precipitation Validation
+=======================
++-------+-----------------+
+|summary|             PRCP|
++-------+-----------------+
+|  count|          1415768|
+|   mean|4.205079433919014|
+| stddev|11.37164431141038|
+|    min|              0.0|
+|    max|            199.9|
++-------+-----------------+
+
+Extreme precipitation events (>100mm): 2,076
+Negative precipitation values: 0
+Monthly Aggregates Validation
+=============================
+Total records: 61,817
+Unique stations: 912
+Months covered: 12/12
+Temperature aggregation issues: 0
+Yearly Aggregates Validation
+===========================
+Total records: 5,966
+Years covered: 11/11
+ML Features Validation
+=====================
+Total records: 1,541,046
+Number of features: 28
+  TMAX: 72.1% missing
+  TMIN: 72.1% missing
+  PRCP: 8.1% missing
+  tmax_7day_avg: 71.8% missing
+  tmin_7day_avg: 71.8% missing
+Data Lineage Validation
+=======================
+Bronze records: 4,482,432
+Silver records: 1,541,046
+Monthly records: 61,817
+Expected silver records: 1,566,342
+Stations - Bronze: 913, Silver: 912, Monthly: 912
+Performance Validation
+=====================
+Partitions - Bronze: 127, Silver: 127, Monthly: 127
+Bronze input files: 127
+Bronze example files:
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/bronze/year=2022/month=1/part-00106-9c1446cf-2d39-49d1-96ff-8ce82e8196d9.c000.snappy.parquet
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/bronze/year=2015/month=6/part-00109-f1ba4f98-4d2a-4643-9bf5-3af608d9ad3a.c000.snappy.parquet
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/bronze/year=2020/month=1/part-00122-0f11affa-baeb-4529-9b19-fe10834aaa7b.c000.snappy.parquet
+Silver input files: 127
+Silver example files:
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/silver/year=2018/month=10/part-00041-6aa6b63e-132f-42a3-8ba5-202a2ada0312.c000.snappy.parquet
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/silver/year=2023/month=3/part-00062-88bb8fce-e8de-457c-88b5-6857533d40a9.c000.snappy.parquet
+  dbfs:/Volumes/workspace/ghcn/ghcnvol/data/silver/year=2023/month=2/part-00063-1e874117-a59e-4410-8297-1ad04bb1b7fc.c000.snappy.parquet
+GHCN-D ETL Pipeline Validation Summary
+========================================
+
+SCHEMA_VALIDATION:
+  bronze_schema: ✓ PASS
+  silver_schema: ✓ PASS
+
+DATA_QUALITY:
+  bronze_records: 4482432
+  silver_records: 1541046
+  monthly_records: 61817
+  temperature_anomalies: 36
+  temperature_inconsistent: 0
+  extreme_precipitation: 2076
+  negative_precipitation: 0
+
+COMPLETENESS:
+  TMAX: 27.860881505159483
+  TMIN: 27.85101807473625
+  PRCP: 91.87058660156802
+  SNOW: 54.666440846022766
+  SNWD: 18.512036629665822
+
+PERFORMANCE:
+  bronze_partitions: 127
+  silver_partitions: 127
+  monthly_partitions: 127
+Data Quality Recommendations
+===============================
+⚠️  Low data completeness for some elements - consider data imputation

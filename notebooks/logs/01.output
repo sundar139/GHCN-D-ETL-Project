@@ -1,0 +1,30 @@
+Pipeline configuration loaded successfully
+Stations file URL: https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
+Daily data file URL: https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd_all.tar.gz
+✓ Stations file downloaded and verified: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd-stations.txt
+✓ Daily data archive downloaded and verified: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all.tar.gz
+Found 1407 stations in GA
+Sample station IDs: ['US1GAWY0007', 'USC00090430', 'US1GAGN0018', 'US1GACG0005', 'US1GAWL0013']
+Extracted 913 station files
+File: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/USW00053819.dly
+  Records: 1638
+  Date range: {'start': '2015-01', 'end': '2025-07'}
+
+File: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/USW00053838.dly
+  Records: 1631
+  Date range: {'start': '2015-01', 'end': '2025-07'}
+
+File: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/USW00053863.dly
+  Records: 1606
+  Date range: {'start': '2015-01', 'end': '2025-07'}
+
+File: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/USW00053873.dly
+  Records: 1566
+  Date range: {'start': '2015-01', 'end': '2025-07'}
+
+File: /Volumes/workspace/ghcn/ghcnvol/data/raw/ghcnd_all/USR0000GSTA.dly
+  Records: 381
+  Date range: {'start': '2015-01', 'end': '2025-07'}
+
+Total records processed (sample): 6822
+Data ingestion completed successfully!
