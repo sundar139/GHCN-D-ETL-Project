@@ -66,11 +66,11 @@ workspace/
 > Run all pipeline notebooks sequentially:
 
 ```python
-dbutils.notebook.run("01_data_ingestion.py", 3600)
-dbutils.notebook.run("02_bronze_processing.py", 3600)
-dbutils.notebook.run("03_silver_processing.py", 3600)
-dbutils.notebook.run("04_gold_processing.py", 3600)
-dbutils.notebook.run("05_data_validation.py", 3600)
+dbutils.notebook.run("01_data_ingestion.py")
+dbutils.notebook.run("02_bronze_processing.py")
+dbutils.notebook.run("03_silver_processing.py")
+dbutils.notebook.run("04_gold_processing.py")
+dbutils.notebook.run("05_data_validation.py")
 ```
 
 ## Data Sources
