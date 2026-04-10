@@ -317,3 +317,7 @@ It is portfolio-ready as a data engineering project because it combines:
 - `notebooks/logs/03.output`
 - `notebooks/logs/04.output`
 - `notebooks/logs/05.output`
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
